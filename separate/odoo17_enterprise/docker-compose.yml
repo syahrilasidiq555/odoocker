@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  web:
+    image: odoo:17
+    ports:
+      - "8017:8069"
+    environment:
+      - HOST=db_postgres
+      - USER=odoo
+      - PASSWORD=odoo
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./custom_addons:/mnt/extra-addons
+      - ./addons_enterprise:/mnt/addons_enterprise
+    networks:
+      - postgres_12_common_network
+networks:
+  postgres_12_common_network:
+     external: true
+volumes:
+  odoo-web-data:

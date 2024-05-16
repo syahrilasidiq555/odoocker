@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  db_postgres:
+    image: postgres:12
+    ports:
+      - "5430:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+    networks:
+      - common_network
+networks:
+  common_network:
+volumes:
+  odoo-db-data:
